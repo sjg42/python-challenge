@@ -1,6 +1,6 @@
 # python-challenge
  
-#PyBank
+PyBank
 main.py reads in financial records from budget_data.csv which is composed of two columns:
 "Date" and "Profit/Losses".
 
@@ -15,7 +15,7 @@ The script ends by printing these results to the user's terminal and writing the
 results to a text file within the analysis folder.
 
 
-#PyPoll
+PyPoll
 main.py reads in poll data from election_data.csv which is composed of three columns:
 "Voter ID", "County", and "Candidate". 
 
