@@ -45,26 +45,28 @@ greatest_inc_prof = 0
 greatest_dec_month = 0
 greatest_dec_prof = 0
 
-for row in b_data:
+for i in range(len(b_data)):
     #add to month accumulator
     num_months+=1
 
     #add to net Prof/Loss
-    prof_loss+=float(row[1])
-
+    prof_loss+=float(b_data[i][1])
+    
+    #check for first month
+    if num_months == 1:
+        continue
     #check for new greatest increase
-    if float(row[1])>greatest_inc_prof:
-        greatest_inc_month = row[0]
-        greatest_inc_prof = float(row[1])
-
+    elif (float(b_data[i][1]) - float(b_data[i-1][1]))>greatest_inc_prof:
+        greatest_inc_month = b_data[i][0]
+        greatest_inc_prof = float(b_data[i][1]) - float(b_data[i-1][1])
     #check for new greatest decrease
-    if float(row[1])<greatest_dec_prof:
-        greatest_dec_month = row[0]
-        greatest_dec_prof = float(row[1])
+    elif (float(b_data[i][1]) - float(b_data[i-1][1]))<greatest_dec_prof:
+        greatest_dec_month = b_data[i][0]
+        greatest_dec_prof = float(b_data[i][1]) - float(b_data[i-1][1])
 
 #calculate average change in Profits/Losses
-#by taking prof_loss / num_months
-Average_change = prof_loss/num_months
+#by taking ((last prof/loss value) - (first prof/loss value)) / (num_months-1)
+Average_change = (float(b_data[len(b_data)-1][1])-float(b_data[0][1]))/(num_months-1)
 
 #print Necessary info to terminal
 print(f"Total Months: {num_months}")
